@@ -6,6 +6,8 @@
 package tableauswing;
 
 import java.awt.Container;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,7 +21,7 @@ public class TableauSwing {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
         // TODO code application logic here
         
         JFrame fenetre = new JFrame();
@@ -31,6 +33,7 @@ public class TableauSwing {
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         CatalogueDePannes data = new CatalogueDePannes();
+        data.loadFromXML();
         
         Object columnNames[] = { "Id", "Nom"};
         
