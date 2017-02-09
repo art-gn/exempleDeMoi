@@ -30,11 +30,14 @@ import org.json.simple.parser.ParseException;
 public class CatalogueDePannes extends AbstractTableModel{
     private ArrayList<Panne> pannes = new ArrayList<>();
     
+    private static final String[] COLUMN_NAMES = {"id", "nom"};
+    
     public void loadFromCode(){
         pannes.add(new Panne(1, "Batterie HS"));
         pannes.add(new Panne(2, "Phares grillés"));
         pannes.add(new Panne(3, "Radiateur percé"));
         pannes.add(new Panne(4, "Pneus à plat"));
+        fireTableDataChanged();
     }
     
     public void loadFromCSV() throws FileNotFoundException, IOException{
@@ -47,6 +50,7 @@ public class CatalogueDePannes extends AbstractTableModel{
             pannes.add(new Panne(new Integer(parts[0]), parts[1]));
         }
         reader.close();
+        fireTableDataChanged();
     }
     
     public void loadFromXML() throws Exception{
@@ -67,6 +71,7 @@ public class CatalogueDePannes extends AbstractTableModel{
                 )
             );
         }
+        fireTableDataChanged();
         
     }
     public void loadFromJSON() throws IOException, ParseException{
@@ -87,32 +92,28 @@ public class CatalogueDePannes extends AbstractTableModel{
                       (long) panneJSON.get("id"),
                       (String) panneJSON.get("nom")));
         }
-        
+        fireTableDataChanged();
     }
     
-    public Object[][] toRawData(){
-        Object rawData[][] = new Object[pannes.size()][2];
-        for(int i = 0 ; i < pannes.size() ; i++){
-            Panne p = pannes.get(i);
-            rawData[i] = new Object[]{p.getId(), p.getNom()};
-        }
-       
-        return rawData;
-    }
 
-    @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pannes.size();
     }
 
-    @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return COLUMN_NAMES.length;
+    }
+
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        if(columnIndex == 0)
+            return pannes.get(rowIndex).getId();
+        return pannes.get(rowIndex).getNom();
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getColumnName(int column) {
+        
+        return COLUMN_NAMES[column];
     }
     
 }

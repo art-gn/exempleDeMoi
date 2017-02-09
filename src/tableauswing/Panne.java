@@ -16,7 +16,8 @@ package tableauswing;
  * @author clement
  */
 public class Panne {
-   
+    static final int ATTR_COUNT = 2;
+            
     public Panne(long id, String nom) {
 
         this.id = id;

@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 
 /**
  *
@@ -32,19 +33,27 @@ public class TableauSwing {
         
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        CatalogueDePannes pannesTable = new CatalogueDePannes();
-        pannesTable.loadFromJSON();
-        pannesTable.loadFromXML();
-
+        CatalogueDePannes sourceDonneesPannes = new CatalogueDePannes();
         
         
-        JTable table = new JTable(pannesTable);
+        sourceDonneesPannes.loadFromJSON();    
+        
+        JTable table = new JTable(sourceDonneesPannes);
 
         c.add(new JScrollPane(table));
-        fenetre.setVisible(true);
         
-        pannesTable.loadFromCode();
-        pannesTable.loadFromCSV();
+        sourceDonneesPannes.loadFromXML();
+        
+        fenetre.setVisible(true);
+       
+        
+        
+         
+        sourceDonneesPannes.loadFromCode();
+        
+        sourceDonneesPannes.loadFromCSV();
+        
+
 
     }
     
