@@ -32,18 +32,20 @@ public class TableauSwing {
         
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        CatalogueDePannes data = new CatalogueDePannes();
-        data.loadFromJSON();
-        data.loadFromXML();
-        data.loadFromCode();
-        data.loadFromCSV();
+        CatalogueDePannes pannesTable = new CatalogueDePannes();
+        pannesTable.loadFromJSON();
+        pannesTable.loadFromXML();
+
         
-        Object columnNames[] = { "Id", "Nom"};
         
-        JTable table = new JTable(data.toRawData(), columnNames);
+        JTable table = new JTable(pannesTable);
 
         c.add(new JScrollPane(table));
         fenetre.setVisible(true);
+        
+        pannesTable.loadFromCode();
+        pannesTable.loadFromCSV();
+
     }
     
 }

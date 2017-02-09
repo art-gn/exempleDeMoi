@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.json.simple.JSONArray;
@@ -26,7 +27,7 @@ import org.json.simple.parser.ParseException;
  *
  * @author clement
  */
-public class CatalogueDePannes{
+public class CatalogueDePannes extends AbstractTableModel{
     private ArrayList<Panne> pannes = new ArrayList<>();
     
     public void loadFromCode(){
@@ -97,6 +98,21 @@ public class CatalogueDePannes{
         }
        
         return rawData;
+    }
+
+    @Override
+    public int getRowCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getColumnCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
