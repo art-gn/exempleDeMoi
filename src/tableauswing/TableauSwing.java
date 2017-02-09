@@ -33,7 +33,10 @@ public class TableauSwing {
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         CatalogueDePannes data = new CatalogueDePannes();
+        data.loadFromJSON();
         data.loadFromXML();
+        data.loadFromCode();
+        data.loadFromCSV();
         
         Object columnNames[] = { "Id", "Nom"};
         

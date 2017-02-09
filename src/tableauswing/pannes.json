@@ -1,0 +1,17 @@
+{
+    "pannes": [
+        {
+            "id" : 87,
+            "nom": "Coup de la panne"
+        },
+        {
+            "id" : 78,
+            "nom": "Immergée au cap vert"
+        },
+        {
+            "id" : 88,
+            "nom": "Obiwan Kenobi",
+            "pieces_necessaires": ["sabre laser", "R2D2"]
+        }
+    ]
+}

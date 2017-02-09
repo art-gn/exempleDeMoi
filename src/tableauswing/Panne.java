@@ -17,20 +17,20 @@ package tableauswing;
  */
 public class Panne {
    
-    public Panne(int id, String nom) {
+    public Panne(long id, String nom) {
 
         this.id = id;
         this.nom = nom;
     }
    
-    private int id;
+    private long id;
 
     /**
      * Get the value of id
      *
      * @return the value of id
      */
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class Panne {
      *
      * @param id new value of id
      */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

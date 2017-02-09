@@ -14,10 +14,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -62,6 +65,26 @@ public class CatalogueDePannes{
                     node.getTextContent()
                 )
             );
+        }
+        
+    }
+    public void loadFromJSON() throws IOException, ParseException{
+        URL url = getClass().getResource("pannes.json");
+        File file = new File(url.getPath());
+        
+        JSONParser parser = new JSONParser();
+        
+        JSONObject obj = (JSONObject) parser.parse(new FileReader(file));
+        
+        JSONArray pannesJSON = (JSONArray) obj.get("pannes");
+        System.out.println(pannesJSON);
+
+        for(Object panne : pannesJSON) {
+            JSONObject panneJSON = (JSONObject) panne;
+            pannes.add(
+                new Panne(
+                      (long) panneJSON.get("id"),
+                      (String) panneJSON.get("nom")));
         }
         
     }
