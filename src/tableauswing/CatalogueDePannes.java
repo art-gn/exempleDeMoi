@@ -60,6 +60,14 @@ public class CatalogueDePannes extends AbstractTableModel{
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(file);
         NodeList list = document.getElementsByTagName("panne");
+        /*TransformerFactory tFactory =
+        TransformerFactory.newInstance();
+        Transformer transformer = 
+        tFactory.newTransformer();
+
+        DOMSource source = new DOMSource(document);
+        StreamResult result = new StreamResult(System.out);
+        transformer.transform(source, result)*/
         for(int i = 0; i < list.getLength() ; i ++){
             Node node = list.item(i);
             pannes.add(
@@ -74,6 +82,7 @@ public class CatalogueDePannes extends AbstractTableModel{
         fireTableDataChanged();
         
     }
+
     public void loadFromJSON() throws IOException, ParseException{
         URL url = getClass().getResource("pannes.json");
         File file = new File(url.getPath());
@@ -115,5 +124,14 @@ public class CatalogueDePannes extends AbstractTableModel{
         
         return COLUMN_NAMES[column];
     }
+
+
+
+    void add(int text1, String text0) {
+       pannes.add(new Panne(text1, text0));
+       fireTableDataChanged();
+    }
+
+    
     
 }
